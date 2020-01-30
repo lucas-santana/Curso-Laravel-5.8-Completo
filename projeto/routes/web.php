@@ -34,3 +34,19 @@ Route::get('/seunome/{nome?}/{n}',function($nome=null,$n){
     }
 
 })->where('nome','[A-za-z]+')->where('n','[0-9]+');
+
+Route::prefix('app')->group(function(){
+    Route::get('/',function(){
+        return view('app');
+    });
+
+    Route::get('/users',function(){
+       return view('users');
+    });
+
+    Route::get('/profile',function(){
+        return view('profile');
+    });
+
+    
+});
