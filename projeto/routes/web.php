@@ -27,3 +27,10 @@ Route::get('/seunome/{nome?}',function($nome=null){
     }
 
 });
+
+Route::get('/seunome/{nome?}/{n}',function($nome=null,$n){
+    for($i=0;$i<$n;$i++){
+        echo "$nome <BR>";
+    }
+
+})->where('nome','[A-za-z]+')->where('n','[0-9]+');
