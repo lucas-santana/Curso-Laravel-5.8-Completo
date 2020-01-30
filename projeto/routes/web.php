@@ -18,3 +18,12 @@ Route::get('/', function () {
 Route::get('/ola/{nome}/{Santana}',function($nome,$sobrenome){
     return "Olá ".$nome." $sobrenome !";
 });
+
+Route::get('/seunome/{nome?}',function($nome=null){
+    if(isset($nome))
+        return "Olá ".$nome."!";
+    else {
+        return "Nome não informado!";
+    }
+
+});
