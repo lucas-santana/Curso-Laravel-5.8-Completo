@@ -59,3 +59,10 @@ Route::get('/produtos',function(){
                 <li>Mouse</li>
             </ol>';
 })->name('meusprodutos');
+
+//Redirecionamento de requisições
+Route::redirect('todosprodutos', 'produtos', 301);
+
+Route::get('todosprodutos2', function () {
+    return redirect()->route('meusprodutos');    
+});
