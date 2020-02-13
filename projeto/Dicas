@@ -1,0 +1,8 @@
+1 - 
+Criar controlador com métodos da operação CRUD
+    php artisan make:controller ClienteControlador --resource
+No web.php criamos uma rota resource e ele cria as rotas para cada metodo do controller automaticamente
+    Route::resource('clientes', 'ClienteControlador');
+
+
+2 - 

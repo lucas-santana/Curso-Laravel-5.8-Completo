@@ -20,6 +20,9 @@ Route::get('nome','MeuControlador@getNome');
 Route::get('idade','MeuControlador@getIdade');
 Route::get('multiplicar/{n1}/{n2}','MeuControlador@multiplicar');
 
+//Para não precisar de chamar cada rota uma a uma
+Route::resource('clientes', 'ClienteControlador');
+
 
 /*
 Route::get('/ola/{nome}/{Santana}',function($nome,$sobrenome){
