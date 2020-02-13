@@ -5,4 +5,4 @@ No web.php criamos uma rota resource e ele cria as rotas para cada metodo do con
     Route::resource('clientes', 'ClienteControlador');
 
 
-2 - 
+2 - Criar uma pasta para cada model dentro da pasta view !?
