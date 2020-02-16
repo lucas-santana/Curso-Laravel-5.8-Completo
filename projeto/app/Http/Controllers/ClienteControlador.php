@@ -28,7 +28,16 @@ class ClienteControlador extends Controller
     public function index()
     {
         $clientes = session('clientes');
-        return view('clientes.index', compact(['clientes']));
+
+        $titulo = "Todos os clientes";
+
+        /* Todas maneiras válidas de se retornar parâmetros para a view */
+        return view('clientes.index',compact(['clientes',['titulo']]));
+        // return view('clientes.index',['clientes'=>$clientes,'titulo'=>'TOdos os titulos']);
+        
+        /*return view('clientes.index')
+            ->with('clientes',$clientes)
+            ->with('titulo','Todos os clientes');*/
     }
 
     /**

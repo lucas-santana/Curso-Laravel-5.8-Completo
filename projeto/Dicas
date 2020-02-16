@@ -6,3 +6,10 @@ No web.php criamos uma rota resource e ele cria as rotas para cada metodo do con
 
 
 2 - Criar uma pasta para cada model dentro da pasta view !?
+
+3 - Uma outra maneira
+
+return view('clientes.index',['clientes'=>$clientes,'titulo'=>'TOdos os titulos']);
+return view('clientes.index')
+    ->with('clientes',$clientes)
+    ->with('titulo',"Todos os clientes");
