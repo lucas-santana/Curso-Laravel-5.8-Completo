@@ -1,6 +1,8 @@
 
 
 @extends('layouts.principal')
+
+@section('conteudo')
     <h3>Novo CLiente</h3>
 
     <form action="{{ route('clientes.update',$cliente['id']) }}"  method="POST" >
@@ -12,6 +14,4 @@
     </form>
 
     <a href="{{route('clientes.index')}}">Voltar</a>
-@section('conteudo')
-
 @endsection
