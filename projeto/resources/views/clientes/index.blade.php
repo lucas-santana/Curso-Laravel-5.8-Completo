@@ -1,5 +1,11 @@
 <h3>{{$titulo}}</h3>
 <a href="{{ route('clientes.create') }}">Novo</a>
+
+
+@empty($clientes)
+    <h4>1 Não existem clientes cadastrados</h4>
+@endempty
+@if ($clientes)
 <ul>
     @foreach ($clientes as $c)
         <li>
@@ -14,3 +20,7 @@
         </li>
     @endforeach
 </ul>
+
+@else
+    <h4>2 Não existem clientes cadastrados</h4>
+@endif

@@ -24,6 +24,7 @@ Route::get('multiplicar/{n1}/{n2}','MeuControlador@multiplicar');
 Route::resource('clientes', 'ClienteControlador');
 
 
+
 /*
 Route::get('/ola/{nome}/{Santana}',function($nome,$sobrenome){
     return "Olá ".$nome." $sobrenome !";
@@ -58,7 +59,7 @@ Route::prefix('aplicacao')->group(function(){
         return view('profile');
     })->name('app.profile');
 
-    
+
 });
 
 Route::get('/produtos',function(){
@@ -74,7 +75,7 @@ Route::get('/produtos',function(){
 Route::redirect('todosprodutos', 'produtos', 301);
 
 Route::get('todosprodutos2', function () {
-    return redirect()->route('meusprodutos');    
+    return redirect()->route('meusprodutos');
 });
 
 Route::post('/requisicoes', function(Request $request) {
