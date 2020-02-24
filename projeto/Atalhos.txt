@@ -1,0 +1,1 @@
+1 - Selecione um texto e pressione CTRL+F2 para selecionar varias ocorrencas do texto selecionado

@@ -1,15 +1,92 @@
 1 - 
-Criar controlador com métodos da operação CRUD
-    php artisan make:controller ClienteControlador --resource
-No web.php criamos uma rota resource e ele cria as rotas para cada metodo do controller automaticamente
-    Route::resource('clientes', 'ClienteControlador');
-
+    Criar controlador com métodos da operação CRUD
+        php artisan make:controller ClienteControlador --resource
+    No web.php criamos uma rota resource e ele cria as rotas para cada metodo do controller automaticamente
+        Route::resource('clientes', 'ClienteControlador');
 
 2 - Criar uma pasta para cada model dentro da pasta view !?
 
 3 - Uma outra maneira
 
-return view('clientes.index',['clientes'=>$clientes,'titulo'=>'TOdos os titulos']);
-return view('clientes.index')
-    ->with('clientes',$clientes)
-    ->with('titulo',"Todos os clientes");
+    return view('clientes.index',['clientes'=>$clientes,'titulo'=>'TOdos os titulos']);
+    return view('clientes.index')
+        ->with('clientes',$clientes)
+        ->with('titulo',"Todos os clientes");
+
+4 - Aula 7.31 - Passagem de parâmetros
+    Passagem de parametros para a view:
+        return view('clientes.index')->with('clientes',$clientes)->with('titulo',"Todos os clientes");
+        return view('clientes.edit',compact(['cliente']));
+
+5 - Aula 7.32 - if / else
+    @if(count($clientes)>0)
+        <h1> Mostra os clientes</h1>
+    @else
+        <h1>Não há clientes</h1>
+    @endif
+
+    Se o cliente estiver empty mostra a mensagem dentro do h4
+    @empty($clientes)
+        <h4>1 Não existem clientes cadastrados</h4>
+    @endempty
+
+6 - Templates
+    Para criar um template que será reutilizado em várias páginas para não ter que ficar repetindo.
+    No arquivo que vai ser o principal, principal.blade.php, criamos com @yeld('nomedasecao') 
+    Nos arquivos que vai ser o "miolo" usamos @extends('principal') e declaramos a secao com @section('nomedasecao')
+
+7 - Testar rota 
+    Testa se a rota é clientes.algumacoisa
+        request()->routeIs('clientes.*')
+    Testa se a rota é /produtos
+        request()->routeIs('produtos')
+
+8 - Loops
+    @foreach($Clientes as $c)
+        @if($loop->first)
+            Primeiro
+        @endif
+
+        @if($loop->last)
+            Ultimo
+        @endif
+
+        {{$loop->index}} //Para pegar o index atual
+        {{$loop->count}} //Para pegar o numero de itens
+    @endforeach
+
+    @for($i=0;$i<10;$i++)
+    @endfor
+
+9 - Passagem de parâmetros para layouts
+
+    Nos arquivos de seção:
+        @section('titulo','Clientes Detalhe') //No arquivo index de clientes
+        @section('titulo','Clientes Novo')//No arquivo de criação de clienes
+    Nos arquivos de template declaramos o yeld onde o titulo deve aparecer
+        @yeld('titulo')
+
+10 - Componentes
+    O componente é um arquivo .blade.php. por exemplo:
+       <div class="box {{$tipo}}">
+            <div class="title">{{$titulo}}</div>
+            <div class="msg"> {{ $slot }}</div>
+        </div>
+    Para usar esse componente devemos usar o @component('nomedoarquivoblade'), por exemplo
+        @component('nomedoarquivoblade',['titulo'=>'Titulo do alerta','tipo'=>'succes'])
+             <strong>Whoops!</strong> Something went wrong!
+        @endcomponent
+
+        @component('nomedoarquivoblade',['titulo'=>'Titulo do alerta','tipo'=>'error'])
+             <strong>Whoops!</strong> Something went wrong!
+        @endcomponent
+
+11 - Alias para Componentes
+    Precisamos mexer no AppServiceProvider no método boot adicionando:
+        Blade::component('components.alert', 'alert');
+    Isso ira criar uma abreviação para podermos usar o componente chamando alert em vez de @component
+        @alert(['type' => 'danger'])
+            You are not allowed to access this resource!
+        @endalert
+
+
