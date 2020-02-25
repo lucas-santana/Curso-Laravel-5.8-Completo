@@ -107,3 +107,8 @@ Route::options('/requisicoes', function(Request $request){
 Route::get('/requisicoes', function(Request $request){
     return 'Hello GET';
 });*/
+
+
+Route::get('bootstrap', function () {
+    return view('outras.exemplo');
+});

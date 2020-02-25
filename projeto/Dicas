@@ -89,4 +89,130 @@
             You are not allowed to access this resource!
         @endalert
 
+12 - Utilizando o Bootstrap 4
+    O comando npm install instala as dependencias do arquivo package.json
+    O comando npm run dev compila as dependencias da pasta public em um unico arquivo, app.js e app.css
+
+13 - Tinker
+    Executar codigos pelo terminal
+        php artisan tinker
+    Listar registros 
+        use \App\Brand;   
+        Brand::all();
+    Inserindo registros
+        #Tem que criar um objeto para cada inserção
+            $brand = new Brand()
+            $brand->name = "Teste 3
+            $brand->save();
+
+        #Mass Assignment
+        #Para inserir registros em uma unica linha temos que criar o atributo protected $fillable com os atributos que serão inseridos
+        # Tem que dar um quit no tinker para ter efeito
+            use \App\Brand;
+            $brand = Brand::create(['name'=>'Mass']);
+    Consultas
+        #Com o find compara sempre com a chave primaria
+            Brand::find(1)
+            Brand::find([1,2])
+
+        #Com o where, sem o método get retorna o Builder,permitindo encadear novos Builders e no final chamar o método get()
+            Brand::where('id',1)->get()
+
+            Brand::where('id','<>','1')->get(); #Pode ser =,<>,>,<
+
+            Brand::whereBetween('id',[1,3])->get();
+            Brand::whereNotBetween('id',[1,3])->get();
+            Brand::whereNotIn('id',[1,3])->get();
+            Brand::whereIn('id',[1,3])->get();
+
+        #LIKE
+            Brand::where('name','like','%Mas%')->get();
+
+            #Aspas simples vs dupla
+                $name = 'Teste';
+            #Ao usar aspas simples no método where ele irá comparar com $name exatamente,ele ira procurar pela string $name
+                Brand::where('name','like','%$name%')->get();
+            #Ao usar aspas duplas no método where ele irá comparar com o conteudo da variavel $name
+                Brand::where('name','like',"%$name%")->get();
+        
+        #Encadeamento de queries
+            #É possivel encadear queries pois o método where retorna um Builder
+            #Nesse caso será feito uma operação AND, onde id > 1 && name="Teste 2"
+                Brand::where('id','>','1')->where('name','Teste 2')->get();
+            #Operação Or
+                Brand::where('id','>','1')->orWhere('name','Teste 2')->get();
+            
+        #Agrupando queries
+            #Se quisermos fazer a seguinte a operação (id>1 and id<4) and ('name' ='Teste 2' or 'name' = 'Mass')
+            
+                Brand::where( 
+                    function($query){ 
+                        $query->where('id','>','1')->where('id','<','4');
+                    }
+                )->where(
+                    function($query){ 
+                        $query->where('name','=','Teste 2')->orWhere('name','Mass');
+                    }
+                )->get();
+        #Ordenando
+            Brand::orderBy('name')->get()
+            Brand::where('id','>','1')->orderBy('name','desc')->get()
+
+        #Collections
+           
+        
+        #Atualizando
+            $brand = Brand::find(1)
+            $brand->name = 'SS';
+            $brand->save()
+
+            #atualizando varias colunas
+                 $brand = Brand::find(1)
+                 $brand->fill(['name'=>'SemSunga'])
+                 $brand->save()
+
+            #usando where e alterando varios registros
+                Brand::where('id','>','2')->update(['name'=>'TUDO IGUAL'])
+
+
+        #Apagar
+                $brand = Brand::find(1)
+                $brand->delete();
+
+                Brand::destroy('1');
+
+                Brand::where('id','>','3');
+
+        #SoftDelete
+                Tem que alterar na migrations 
+                    $table->softDelete();
+                e na Model
+                    use SoftDeletes;//é um Trait
+
+
+                $brands = Brand::all();
+                $brands[0]->delete();
+
+                #Retornar também os registros apagados
+                    Brand::withTrashed()
+
+                #Retorna true se o registro está apagado
+                 $brands = Brand::withTrashed();
+                 $brands[0]->trashed();
+
+                #Retorna somente os registros apagados
+                    $brands = Brand::onlyTrashed()->get();
+                
+                #Restaurar um elemento apagado
+                    $brands[0]->restore();
+                #Forçar um registro a ser apagado
+                    Brand::find(11)->forceDelete();
+                    $brands[0]->forceDelete()
+
+
+
+
+            
+
+
 
