@@ -9,8 +9,8 @@
         @csrf
         <div class="form-row">
           <div class="form-group col">
-            <label for="nomeProduto" class="col-form-label">Nome do Produto</label>
-            <input type="text" name="nomeProduto" id="nomeProduto" class="form-control" placeholder="Nome do Produto" aria-describedby="helpId">
+            <label for="nome" class="col-form-label">Nome do Produto</label>
+            <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome do Produto" aria-describedby="helpId">
             <small id="helpId" class="text-muted">Help text</small>
           </div>
 
@@ -27,8 +27,8 @@
           </div>
         
           <div class="form-group col">
-            <label for="categoria" class="col-form-label">Categoria</label>
-            <select class="form-control" name="categoria" id="categoria">
+            <label for="categoria_id" class="col-form-label">Categoria</label>
+            <select class="form-control" name="categoria_id" id="categoria_id">
               @if($categorias)
                 @foreach ($categorias as $categoria)
                   <option value="{{$categoria->id}}">{{$categoria->nome}}</option>

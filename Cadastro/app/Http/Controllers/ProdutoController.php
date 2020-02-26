@@ -38,12 +38,27 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        $produto = new Produto();
+        /* ---------------- Método 1 --------------------*/
+        /*$produto = new Produto();
         $produto->nome = $request->nomeProduto;
         $produto->estoque = $request->estoque;
         $produto->preco = $request->preco;
         $produto->categoria_id = $request->categoria;
-        $produto->save();
+        $produto->save();*/
+
+        /* ---------------- Método 2 --------------------*/
+
+        /*$produtoCriado = Produto::create([
+            'nome' => $request->nomeProduto,
+            'estoque' => $request->estoque,
+            'preco' => $request->preco,
+            'categoria_id' => $request->categoria,
+        ]);*/
+
+        /* ---------------- Método 3 --------------------*/
+
+            Produto::create($request->all());
+
 
         return redirect()->route('produtos.index');
     }
@@ -84,10 +99,10 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         $produto = Produto::find($id);
-        $produto->nome = $request->nomeProduto;
+        $produto->nome = $request->nome;
         $produto->estoque = $request->estoque;
         $produto->preco = $request->preco;
-        $produto->categoria_id = $request->categoria;
+        $produto->categoria_id = $request->categoria_id;
         $produto->update();
 
         return redirect()->route('produtos.index');
