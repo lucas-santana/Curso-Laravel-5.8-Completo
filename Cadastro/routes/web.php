@@ -11,6 +11,14 @@
 |
 */
 
-
+Route::get('/',function(){
+    return view('index');
+})->name('index');
 Route::resource('produtos', 'ProdutoController');
 Route::resource('categorias', 'CategoriaController');
+
+Route::resources([
+    'produtos'=> 'ProdutoController',
+    'categorias'=> 'CategoriaController',
+    'cliente'=>'ClienteController',
+]);

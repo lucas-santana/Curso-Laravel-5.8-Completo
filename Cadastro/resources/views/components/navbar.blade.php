@@ -8,11 +8,14 @@
             <li class="nav-item {{ request()->routeIs('index') ? 'active' : ''}}">
                 <a class="nav-link" href="/">Home </a>
             </li>
+            <li class="nav-item {{ request()->routeIs('cliente.*') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('cliente.index')}}">Clientes</a>
+            </li>
             <li class="nav-item {{ request()->routeIs('produtos.*') ? 'active' : ''}}">
-                <a class="nav-link" href="/produtos">Produtos</a>
+                <a class="nav-link" href="{{route('produtos.index')}}">Produtos</a>
             </li>
             <li class="nav-item {{ request()->routeIs('categorias.*') ? 'active' : ''}}">
-                <a class="nav-link" href="/categorias">Categorias</a>
+                <a class="nav-link" href="{{route('categorias.index')}}">Categorias</a>
             </li>
            
            
