@@ -118,6 +118,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "meuapp"
+    }
+  },
+  "defaultProject": "meuapp",
+  "cli": {
+    "analytics": false
+  }
 }
