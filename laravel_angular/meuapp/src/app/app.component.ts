@@ -27,5 +27,14 @@ export class AppComponent {
     const dialogRef = this.dialog.open(PostDialogComponent,{
       width:'600px'
     });
+
+    dialogRef.afterClosed().subscribe(
+      (result)=>{
+        if(result){
+          console.log(result);
+
+        }
+      }
+    );
   }
 }

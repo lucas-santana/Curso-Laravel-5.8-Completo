@@ -9,15 +9,32 @@ import {Post} from './../post';
 })
 export class PostDialogComponent implements OnInit {
 
-  private dados = {
+   nomeArquivo: string='';
+
+   dados = {
     post: new Post("","","","","",""),
     arquivo:null
   };
   constructor(
-    public dialogRef: MatDialogRef<PostDialogComponent>
-  ) { }
+    public dialogRef: MatDialogRef<PostDialogComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  mudouArquivo(event){
+    //console.log(event.target.files[0]);
+    this.nomeArquivo = event.target.files[0].name;
+    this.dados.arquivo = event.target.files[0];
+  }
+
+  salvar(){
+    this.dialogRef.close(this.dados);
+
+  }
+
+  cancelar(){
+    this.dialogRef.close(null);
+
   }
 
 }
