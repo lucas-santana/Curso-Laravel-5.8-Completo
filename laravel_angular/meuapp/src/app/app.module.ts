@@ -21,11 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
+import { PostDialogComponent } from './post-dialog/post-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent
+    PostComponent,
+    PostDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,9 @@ import { PostComponent } from './post/post.component';
     MatBadgeModule
   ],
   providers: [],
+  entryComponents: [
+    PostDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
