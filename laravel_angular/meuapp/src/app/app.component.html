@@ -3,6 +3,8 @@
 </mat-toolbar>
 
 <mat-divider></mat-divider>
+<!-- posts é o posts do app.components.ts-->
+<app-post *ngFor="let p of posts" [post]="p"></app-post> 
 
 <button mat-fab color="primary" class="float-button">
   <mat-icon>add</mat-icon>
