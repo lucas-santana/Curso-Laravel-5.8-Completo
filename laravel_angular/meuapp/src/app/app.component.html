@@ -4,8 +4,9 @@
 
 <mat-divider></mat-divider>
 <!-- posts é o posts do app.components.ts-->
-<app-post *ngFor="let p of posts" [post]="p"></app-post> 
-
+<div fxLayout="row wrap" fxLayoutAlign="space-around stretch" >
+  <app-post *ngFor="let p of posts" [post]="p"></app-post> 
+</div>
 <button mat-fab color="primary" class="float-button">
   <mat-icon>add</mat-icon>
 </button>
