@@ -1,3 +1,4 @@
+import { PostService } from './post.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,7 +50,7 @@ import { PostDialogComponent } from './post-dialog/post-dialog.component';
     MatChipsModule,
     MatBadgeModule
   ],
-  providers: [],
+  providers: [PostService],
   entryComponents: [
     PostDialogComponent
   ],
